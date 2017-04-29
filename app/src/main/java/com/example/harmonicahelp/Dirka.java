@@ -13,6 +13,7 @@ public class Dirka {
         this.note = note.getNota();
     }
 
+
     public String getNote() {
         return note;
     }

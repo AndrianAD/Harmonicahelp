@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -452,12 +453,13 @@ public class MainActivity extends AppCompatActivity {
         final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
         for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
-            Dirka dirka= new Dirka(note[i],note[i+temp]);
+            Dirka nots = (Dirka) noteList2.get(i);
+            Dirka tabs = (Dirka) noteList2.get(i + temp);
             j++;
             if (j == 7) {
                 j = 0;
             }
-            gammaview += isChecked ? dirka.getNote() + " " : dirka.getTabs() + " ";
+            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
         }
         major.setText(gammaview);
         gammaview = "";
@@ -490,12 +492,13 @@ public class MainActivity extends AppCompatActivity {
         final int[] masiv = {2, 1, 2, 2, 1, 2, 2};
         for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
-            Dirka dirka= new Dirka(note[i],note[i+temp]);
+            Dirka nots = (Dirka) noteList2.get(i);
+            Dirka tabs = (Dirka) noteList2.get(i + temp);
             j++;
             if (j == 7) {
                 j = 0;
             }
-            gammaview += isChecked ? dirka.getNote() + " " : dirka.getTabs() + " ";
+            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
         }
         minor.setText(gammaview);
         gammaview = "";
@@ -527,12 +530,13 @@ public class MainActivity extends AppCompatActivity {
         final int[] masiv = {3, 2, 1, 1, 3, 2};
         for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
-            Dirka dirka= new Dirka(note[i],note[i+temp]);
+            Dirka nots = (Dirka) noteList2.get(i);
+            Dirka tabs = (Dirka) noteList2.get(i + temp);
             j++;
-            if (j == 7) {
+            if (j == 6) {
                 j = 0;
             }
-            gammaview += isChecked ? dirka.getNote() + " " : dirka.getTabs() + " ";
+            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
         }
         blues.setText(gammaview);
         gammaview = "";
