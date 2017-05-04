@@ -10,22 +10,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnHarm;
     private Button btnTon;
-    private EditText enterTab;
     private Button actionCount;
     public static TextView result;
     public static TextView major;
     public static TextView minor;
     public static TextView blues;
-    public static ArrayList noteList2 = new ArrayList();
-    public static ArrayList noteList = new ArrayList();
+    private EditText enterTab;
+    private static ArrayList noteList2 = new ArrayList();
+    private static ArrayList noteList = new ArrayList();
+    private static ArrayList gamma = new ArrayList();
     Note[] note = Note.values;
     public static int n = 0;
     public static int z = 0;
@@ -33,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     static String gammaview = " ";
     public static List<String> list = new ArrayList<String>();
     public static Dirka final_tabs;
-    public static ArrayList gamma = new ArrayList();
-
+    static int temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         switchCheckBox_major.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (noteList.isEmpty() || noteList2.isEmpty()) {
+                if (noteList2.isEmpty()) {
                     return;
                 }
                 getGamma_major(isChecked);
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         switchCheckBox_minor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (noteList.isEmpty() || noteList2.isEmpty()) {
+                if (noteList2.isEmpty()) {
                     return;
                 }
                 getGamma_minor(isChecked);
@@ -82,12 +80,26 @@ public class MainActivity extends AppCompatActivity {
         switchCheckBox_blues.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (noteList.isEmpty() || noteList2.isEmpty()) {
+                if (noteList2.isEmpty()) {
                     return;
+                }
+                if (noteList.isEmpty()){
+                    noteList= (ArrayList) noteList2.clone();
                 }
                 getGamma_blues(isChecked);
             }
         });
+
+//            enterTab.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    final Dialog dialog = new Dialog(MainActivity.this);
+//                    dialog.setContentView(R.layout.button_key);
+//                    dialog.show();
+//                }
+//            });
+
+
 
 // Кнопка "Посчитать"
         actionCount.setOnClickListener(new View.OnClickListener() {
@@ -222,11 +234,6 @@ public class MainActivity extends AppCompatActivity {
                                 n_view.setText(button11.getText());
                                 dialog.dismiss();
                                 break;
-                            default:
-                                result.setText("WRONG!");
-                                dialog.dismiss();
-
-
                         }
                     }
                 };
@@ -363,11 +370,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button11.getText());
                                 dialog.dismiss();
                                 break;
-                            default:
-                                result.setText("WRONG!");
-                                dialog.dismiss();
-
-
                         }
                     }
                 };
@@ -400,6 +402,12 @@ public class MainActivity extends AppCompatActivity {
             Dirka dirka = new Dirka(note[i], note[i - z]);
             noteList2.add(dirka);
         }
+        temp=check_temp(n,z);
+        getGamma_major(false);
+        getGamma_minor(false);
+        getGamma_blues(false);
+
+
     }
 
 
@@ -431,25 +439,6 @@ public class MainActivity extends AppCompatActivity {
         gamma.clear();
         int j = 0;
         int int_masiv = 0;
-        int temp = z - n;
-        if (temp == -5) {
-            temp = 7;
-        }
-        if (temp == -4) {
-            temp = 8;
-        }
-        if (temp == -3) {
-            temp = 9;
-        }
-        if (temp == -2) {
-            temp = 10;
-        }
-        if (temp == -1) {
-            temp = 11;
-        }
-        if (temp == 0) {
-            temp = z + 7;
-        }
         final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
         for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
@@ -470,25 +459,6 @@ public class MainActivity extends AppCompatActivity {
         gamma.clear();
         int j = 0;
         int int_masiv = 0;
-        int temp = z - n;
-        if (temp == -5) {
-            temp = 7;
-        }
-        if (temp == -4) {
-            temp = 8;
-        }
-        if (temp == -3) {
-            temp = 9;
-        }
-        if (temp == -2) {
-            temp = 10;
-        }
-        if (temp == -1) {
-            temp = 11;
-        }
-        if (temp == 0) {
-            temp = z + 7;
-        }
         final int[] masiv = {2, 1, 2, 2, 1, 2, 2};
         for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
@@ -504,10 +474,7 @@ public class MainActivity extends AppCompatActivity {
         gammaview = "";
     }
 
-    public void getGamma_blues(boolean isChecked) {
-        gamma.clear();
-        int j = 0;
-        int int_masiv = 0;
+    private int check_temp(int n, int z) {
         int temp = z - n;
         if (temp == -5) {
             temp = 7;
@@ -527,6 +494,13 @@ public class MainActivity extends AppCompatActivity {
         if (temp == 0) {
             temp = z + 7;
         }
+        return temp;
+    }
+
+    public void getGamma_blues(boolean isChecked) {
+        gamma.clear();
+        int j = 0;
+        int int_masiv = 0;
         final int[] masiv = {3, 2, 1, 1, 3, 2};
         for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
@@ -544,23 +518,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 //
-//    public static void getGamma_major() {
-//        gamma.clear();
-//        int j = 0;
-//        int int_masiv = 0;
-//        final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
-//        for (int i = 0; i < 37; i = i + int_masiv) {
-//            int_masiv = masiv[j];
-//            Dirka dirka2 = (Dirka) noteList.get(i);
-//            j++;
-//            if (j == 7) {
-//                j = 0;
-//            }
-//            gammaview += " " + dirka2.getNote();
-//        }
-//        major.setText(gammaview);
-//        gammaview = "";
-//    }
+    public static void getGamma_major() {
+        gamma.clear();
+        int j = 0;
+        int int_masiv = 0;
+        final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
+        for (int i = 0; i < 37; i = i + int_masiv) {
+            int_masiv = masiv[j];
+            Dirka dirka2 = (Dirka) noteList2.get(i);
+            j++;
+            if (j == 7) {
+                j = 0;
+            }
+            gammaview += " " + dirka2.getNote();
+        }
+        major.setText(gammaview);
+        gammaview = "";
+    }
 
 
     // Ввод исходных табов от пользователя
@@ -575,14 +549,12 @@ public class MainActivity extends AppCompatActivity {
             i++;
         }
         while (i != str.length);
-
-
         list = Arrays.asList(str);
     }
 
 
     public static void changetabs() {
-        int k = 0;
+        int k;
         rezultat = "";
         for (int i = 0; i < list.size(); i++) {
             k = 0;
@@ -593,7 +565,7 @@ public class MainActivity extends AppCompatActivity {
                 String list_J = dirka.getTabs();
                 // Ищет совпадения в первом List
                 if (list_J.equals(list_i)) {
-                    int peremennaia = k + z - n - 1;
+                    int peremennaia = k + temp - 1;
                     if (peremennaia < 0) {
                         peremennaia = peremennaia + n + 7;
                     }

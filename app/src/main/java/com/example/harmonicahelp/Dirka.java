@@ -1,9 +1,4 @@
 package com.example.harmonicahelp;
-
-/**
- * Created by Андриан on 26.04.2017.
- */
-
 public class Dirka {
     private String note;
     private String tabs;
