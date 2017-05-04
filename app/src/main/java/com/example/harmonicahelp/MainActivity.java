@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static ArrayList noteList = new ArrayList();
     private static ArrayList gamma = new ArrayList();
     Note[] note = Note.values;
-    public static int n = 0;
+    public static int n = 5;
     public static int z = 0;
     static String rezultat = " ";
     static String gammaview = " ";
@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 if (noteList2.isEmpty()) {
                     return;
                 }
+                if (noteList.isEmpty()) {
+                    noteList = (ArrayList) noteList2.clone();
+                }
                 getGamma_major(isChecked);
             }
         });
@@ -70,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (noteList2.isEmpty()) {
                     return;
+                }
+                if (noteList.isEmpty()) {
+                    noteList = (ArrayList) noteList2.clone();
                 }
                 getGamma_minor(isChecked);
             }
