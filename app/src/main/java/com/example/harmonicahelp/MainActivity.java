@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText enterTab;
     private static ArrayList noteList2 = new ArrayList();
     private static ArrayList noteList = new ArrayList();
-    private static ArrayList gamma = new ArrayList();
     Note[] note = Note.values;
     public static int n = 5;
     public static int z = 0;
@@ -400,6 +399,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = n; i < 37 + n + 1; i++) {
             Dirka dirka = new Dirka(note[i], note[i - n]);
             noteList.add(dirka);
+            temp = check_temp(n, z);
         }
     }
 
@@ -442,7 +442,6 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     public void getGamma_major(boolean isChecked) {
-        gamma.clear();
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
@@ -462,7 +461,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void getGamma_minor(boolean isChecked) {
-        gamma.clear();
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {2, 1, 2, 2, 1, 2, 2};
@@ -497,14 +495,10 @@ public class MainActivity extends AppCompatActivity {
         if (temp == -1) {
             temp = 11;
         }
-        if (temp == 0) {
-            temp = z + 7;
-        }
         return temp;
     }
 
     public void getGamma_blues(boolean isChecked) {
-        gamma.clear();
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {3, 2, 1, 1, 3, 2};
@@ -522,25 +516,6 @@ public class MainActivity extends AppCompatActivity {
         gammaview = "";
     }
 
-
-//
-    public static void getGamma_major() {
-        gamma.clear();
-        int j = 0;
-        int int_masiv = 0;
-        final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
-        for (int i = 0; i < 37; i = i + int_masiv) {
-            int_masiv = masiv[j];
-            Dirka dirka2 = (Dirka) noteList2.get(i);
-            j++;
-            if (j == 7) {
-                j = 0;
-            }
-            gammaview += " " + dirka2.getNote();
-        }
-        major.setText(gammaview);
-        gammaview = "";
-    }
 
 
     // Ввод исходных табов от пользователя
