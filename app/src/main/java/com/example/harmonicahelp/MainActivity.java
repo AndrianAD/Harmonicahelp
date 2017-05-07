@@ -11,9 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-
     private Button btnHarm;
     private Button btnTon;
     private Button actionCount;
@@ -95,15 +93,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//            enterTab.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    final Dialog dialog = new Dialog(MainActivity.this);
-//                    dialog.setContentView(R.layout.button_key);
-//                    dialog.show();
-//                }
-//            });
-
+        enterTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.setContentView(R.layout.keybord);
+                dialog.show();
+            }
+        });
 
 
 // Кнопка "Посчитать"
@@ -120,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
         btnHarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
                                 n_view.setText(button5.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button6:
                                 n = 6;
                                 noteList.clear();
@@ -199,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
                                 n_view.setText(button6.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button7:
                                 n = 7;
                                 noteList.clear();
@@ -207,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
                                 n_view.setText(button7.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button8:
                                 n = 8;
                                 noteList.clear();
@@ -223,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
                                 n_view.setText(button9.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button10:
                                 n = 10;
                                 noteList.clear();
@@ -231,7 +223,6 @@ public class MainActivity extends AppCompatActivity {
                                 n_view.setText(button10.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button11:
                                 n = 11;
                                 noteList.clear();
@@ -287,7 +278,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button0.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button1:
                                 z = 1;
                                 noteList2.clear();
@@ -295,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button1.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button2:
                                 z = 2;
                                 noteList2.clear();
@@ -303,7 +292,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button2.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button3:
                                 z = 3;
                                 noteList2.clear();
@@ -311,7 +299,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button3.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button4:
                                 z = 4;
                                 noteList2.clear();
@@ -319,7 +306,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button4.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button5:
                                 z = 5;
                                 noteList2.clear();
@@ -327,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button5.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button6:
                                 z = 6;
                                 noteList2.clear();
@@ -335,7 +320,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button6.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button7:
                                 z = 7;
                                 noteList2.clear();
@@ -343,7 +327,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button7.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button8:
                                 z = 8;
                                 noteList2.clear();
@@ -351,7 +334,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button8.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button9:
                                 z = 9;
                                 noteList2.clear();
@@ -359,7 +341,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button9.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button10:
                                 z = 10;
                                 noteList2.clear();
@@ -367,7 +348,6 @@ public class MainActivity extends AppCompatActivity {
                                 z_view.setText(button10.getText());
                                 dialog.dismiss();
                                 break;
-
                             case R.id.button11:
                                 z = 11;
                                 noteList2.clear();
@@ -416,30 +396,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-//    public static void getGammaposition() {
-//        gamma.clear();
-//        int count1=0,count2=0;
-//        int iterator=0;
-//        for (int i = 0; i <37; i=i+iterator) {
-//            Dirka dirka2 = (Dirka) noteList.get(i);
-//            gammaview+=" "+dirka2.getNote();
-//            count1++;
-//            count2++;
-//            iterator=2;
-//            if( count1==3 && count2==3){
-//                count1=0;
-//                iterator=1;
-//            }
-//            if(count2==7){
-//                count2=0;
-//                count1=0;
-//                iterator=1;
-//            }
-//        }
-//        gamma_rezult.setText(gammaview);
-//        gammaview="";
-//    }
 
     public void getGamma_major(boolean isChecked) {
         int j = 0;
@@ -566,3 +522,26 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
+//    public static void getGammaposition() {
+//        gamma.clear();
+//        int count1=0,count2=0;
+//        int iterator=0;
+//        for (int i = 0; i <37; i=i+iterator) {
+//            Dirka dirka2 = (Dirka) noteList.get(i);
+//            gammaview+=" "+dirka2.getNote();
+//            count1++;
+//            count2++;
+//            iterator=2;
+//            if( count1==3 && count2==3){
+//                count1=0;
+//                iterator=1;
+//            }
+//            if(count2==7){
+//                count2=0;
+//                count1=0;
+//                iterator=1;
+//            }
+//        }
+//        gamma_rezult.setText(gammaview);
+//        gammaview="";
+//    }
