@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Tabs" />
+        android:inputType="textPersonName" />
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -60,7 +59,7 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/keybord1_semiton"
+            android:id="@+id/keybord_semiton"
             android:text="'"
             android:textAllCaps="false" />
 
@@ -89,7 +88,7 @@
     </GridLayout>
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/buttonOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OK" />
