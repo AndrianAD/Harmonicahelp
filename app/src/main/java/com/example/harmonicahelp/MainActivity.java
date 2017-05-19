@@ -1,4 +1,5 @@
 package com.example.harmonicahelp;
+
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,9 +9,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private Button btnHarm;
     private Button btnTon;
@@ -22,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText enterTab;
     private static ArrayList noteList2 = new ArrayList();
     private static ArrayList noteList = new ArrayList();
+    private static ArrayList tempArray = new ArrayList();
     Note[] note = Note.values;
     public static int n = 5;
     public static int z = 0;
@@ -30,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     public static List<String> list = new ArrayList<String>();
     public static Hole final_tabs;
     static int temp;
+    static int octava_set = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
                 if (noteList2.isEmpty()) {
                     return;
                 }
-                if (noteList.isEmpty()){
-                    noteList= (ArrayList) noteList2.clone();
+                if (noteList.isEmpty()) {
+                    noteList = (ArrayList) noteList2.clone();
                 }
                 getGamma_blues(isChecked);
             }
@@ -118,9 +126,15 @@ public class MainActivity extends AppCompatActivity {
                 final Button button_keybord10 = (Button) dialog.findViewById(R.id.keybord10);
                 final Button button_keybordOK = (Button) dialog.findViewById(R.id.buttonOK);
                 final Button button_keybordsemiton = (Button) dialog.findViewById(R.id.keybord_semiton);
+                final Button button_keybordton = (Button) dialog.findViewById(R.id.keybord_ton);
                 final Button button_keybordminus = (Button) dialog.findViewById(R.id.keybord_minus);
                 final Button button_keybordstar = (Button) dialog.findViewById(R.id.keybord_star);
+                final Button button_keybordback = (Button) dialog.findViewById(R.id.keybord_backspace);
+                final Button button_keybordspace = (Button) dialog.findViewById(R.id.keybord_space);
+
                 edittext_keybord.setText(enterTab.getText().toString());
+                rezultat = enterTab.getText().toString();
+                enterTab.setText("");
 
                 View.OnClickListener onClickListener = new View.OnClickListener() {
                     @Override
@@ -128,52 +142,52 @@ public class MainActivity extends AppCompatActivity {
                         String s;
                         switch (v.getId()) {
                             case R.id.keybord1:
-                                s = 1 + " ";
+                                s = "1";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord2:
-                                s = 2 + " ";
+                                s = "2";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord3:
-                                s = 3 + " ";
+                                s = "3";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord4:
-                                s = 4 + " ";
+                                s = "4";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord5:
-                                s = 5 + " ";
+                                s = "5";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord6:
-                                s = 6 + " ";
+                                s = "6";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord7:
-                                s = 7 + " ";
+                                s = "7";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord8:
-                                s = 8 + " ";
+                                s = "8";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord9:
-                                s = 9 + " ";
+                                s = "9";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord10:
-                                s = 10 + " ";
+                                s = "10";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
@@ -183,13 +197,31 @@ public class MainActivity extends AppCompatActivity {
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord_star:
-                                s = "-";
+                                s = "*";
                                 rezultat += s;
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.keybord_semiton:
-                                s = "-";
+                                s = "'";
                                 rezultat += s;
+                                edittext_keybord.setText(rezultat);
+                                break;
+                            case R.id.keybord_ton:
+                                s = "''";
+                                rezultat += s;
+                                edittext_keybord.setText(rezultat);
+                                break;
+                            case R.id.keybord_space:
+                                s = " ";
+                                rezultat += s;
+                                edittext_keybord.setText(rezultat);
+                                break;
+
+                            case R.id.keybord_backspace:
+                                if (rezultat.length() == 0) {
+                                    break;
+                                }
+                                rezultat = rezultat.substring(0, rezultat.length() - 1);
                                 edittext_keybord.setText(rezultat);
                                 break;
                             case R.id.buttonOK:
@@ -198,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
                                 input_tabs(rezultat);
                                 changetabs();
                                 break;
-
                         }
                     }
                 };
@@ -216,10 +247,9 @@ public class MainActivity extends AppCompatActivity {
                 button_keybordminus.setOnClickListener(onClickListener);
                 button_keybordstar.setOnClickListener(onClickListener);
                 button_keybordsemiton.setOnClickListener(onClickListener);
-
-
-
-
+                button_keybordback.setOnClickListener(onClickListener);
+                button_keybordton.setOnClickListener(onClickListener);
+                button_keybordspace.setOnClickListener(onClickListener);
             }
         });
 
@@ -236,10 +266,10 @@ public class MainActivity extends AppCompatActivity {
                 changetabs();
 
 
-
             }
         });
 
+// Make noteList
         btnHarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -370,7 +400,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+// Make noteList2
         btnTon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -494,15 +524,46 @@ public class MainActivity extends AppCompatActivity {
                 button11.setOnClickListener(onClickListener);
 
             }
-        });}
+        });
+        Button octava_plus = (Button) findViewById(R.id.octava_plus);
+        Button octava_minus = (Button) findViewById(R.id.octava_minus);
 
+        octava_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int min = (int) Collections.min(tempArray);
+                int max = (int) Collections.max(tempArray);
+                if (min >= 12) {
+                    octava_set = 12;
+                    changetabs();
+                    octava_set = 0;
+                } else
+                    return;
+            }
+        });
+
+        octava_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int max = (int) Collections.max(tempArray);
+                if (max <= 37 - 12) {
+                    octava_set = -12;
+                    changetabs();
+                    octava_set = 0;
+                } else
+                    return;
+            }
+        });
+
+
+    }
 
     public void tonalinosti() {
         for (int i = n; i < 37 + n + 1; i++) {
             Hole hole = new Hole(note[i], note[i - n]);
             noteList.add(hole);
-            temp = check_temp(n, z);
         }
+        temp = check_temp(n, z);
     }
 
     public void tonalinosti2() {
@@ -510,12 +571,10 @@ public class MainActivity extends AppCompatActivity {
             Hole hole = new Hole(note[i], note[i - z]);
             noteList2.add(hole);
         }
-        temp=check_temp(n,z);
+        temp = check_temp(n, z);
         getGamma_major(false);
         getGamma_minor(false);
         getGamma_blues(false);
-
-
     }
 
 
@@ -523,7 +582,7 @@ public class MainActivity extends AppCompatActivity {
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
+        for (int i = 1; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
             Hole nots = (Hole) noteList2.get(i);
             Hole tabs = (Hole) noteList2.get(i + temp);
@@ -536,13 +595,11 @@ public class MainActivity extends AppCompatActivity {
         major.setText(gammaview);
         gammaview = "";
     }
-
-
     public void getGamma_minor(boolean isChecked) {
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {2, 1, 2, 2, 1, 2, 2};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
+        for (int i = 1; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
             Hole nots = (Hole) noteList2.get(i);
             Hole tabs = (Hole) noteList2.get(i + temp);
@@ -555,32 +612,11 @@ public class MainActivity extends AppCompatActivity {
         minor.setText(gammaview);
         gammaview = "";
     }
-
-    private int check_temp(int n, int z) {
-        int temp = z - n;
-        if (temp == -5) {
-            temp = 7;
-        }
-        if (temp == -4) {
-            temp = 8;
-        }
-        if (temp == -3) {
-            temp = 9;
-        }
-        if (temp == -2) {
-            temp = 10;
-        }
-        if (temp == -1) {
-            temp = 11;
-        }
-        return temp;
-    }
-
     public void getGamma_blues(boolean isChecked) {
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {3, 2, 1, 1, 3, 2};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
+        for (int i = 1; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
             Hole nots = (Hole) noteList2.get(i);
             Hole tabs = (Hole) noteList2.get(i + temp);
@@ -594,7 +630,17 @@ public class MainActivity extends AppCompatActivity {
         gammaview = "";
     }
 
-
+    private int check_temp(int n, int z) {
+        int temp = z - n;
+        int[] nums = {-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11};
+        for (int i : nums) {
+            if (temp == i) {
+                temp = 12 - (-i);
+                break;
+            }
+        }
+        return temp;
+    }
 
     // Ввод исходных табов от пользователя
     public static void input_tabs(String inputtabs) {
@@ -611,9 +657,10 @@ public class MainActivity extends AppCompatActivity {
         list = Arrays.asList(str);
     }
 
-
+    // код смены табов
     public static void changetabs() {
         int k;
+        tempArray.clear();
         rezultat = "";
         for (int i = 0; i < list.size(); i++) {
             k = 0;
@@ -631,7 +678,8 @@ public class MainActivity extends AppCompatActivity {
                     if (peremennaia > 37) {
                         peremennaia = peremennaia - n - 7;
                     }
-                    final_tabs = (Hole) noteList.get(peremennaia);
+                    tempArray.add(peremennaia);
+                    final_tabs = (Hole) noteList.get(peremennaia - octava_set);
                     rezultat += " " + final_tabs.getTabs();
                     break;
                 }
@@ -640,30 +688,4 @@ public class MainActivity extends AppCompatActivity {
         result.setText(rezultat);
     }
 
-
 }
-
-
-//    public static void getGammaposition() {
-//        gamma.clear();
-//        int count1=0,count2=0;
-//        int iterator=0;
-//        for (int i = 0; i <37; i=i+iterator) {
-//            Hole dirka2 = (Hole) noteList.get(i);
-//            gammaview+=" "+dirka2.getNote();
-//            count1++;
-//            count2++;
-//            iterator=2;
-//            if( count1==3 && count2==3){
-//                count1=0;
-//                iterator=1;
-//            }
-//            if(count2==7){
-//                count2=0;
-//                count1=0;
-//                iterator=1;
-//            }
-//        }
-//        gamma_rezult.setText(gammaview);
-//        gammaview="";
-//    }

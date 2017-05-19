@@ -1,11 +1,14 @@
 package com.example.harmonicahelp;
 
-public class Note {
-    public static final Note A0 = new Note("G", "1");
-    public static final Note A1 = new Note("Ab", "-1'");
-    public static final Note A2 = new Note("A", "-1");
-    public static final Note A3 = new Note("Bb", "1*");
-    public static final Note A4 = new Note("B", "2");
+import java.util.Dictionary;
+import java.util.Enumeration;
+
+class Note {
+    private static final Note A0 = new Note("G", "1");
+    private static final Note A1 = new Note("Ab", "-1'");
+    private static final Note A2 = new Note("A", "-1");
+    private static final Note A3 = new Note("Bb", "1*");
+    private static final Note A4 = new Note("B", "2");
     public static final Note A5 = new Note("C", "-2''");
     public static final Note A6 = new Note("C#", "-2'");
     public static final Note A7 = new Note("D", "-2");
@@ -52,7 +55,9 @@ public class Note {
     public static final Note A48 = new Note("G", "");
 
 
-    public static Note[] values = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10,
+    public static Note[] values = {
+            new Note("F", ""),
+            A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10,
             A11, A12, A13, A14, A15, A16, A17, A18, A19, A20, A21, A22, A23, A24, A25, A26,
             A27, A28, A29, A30, A31, A32, A33, A34, A35, A36, A37, A38, A39, A40, A41, A42,
             A43, A44, A45, A46, A47, A48};

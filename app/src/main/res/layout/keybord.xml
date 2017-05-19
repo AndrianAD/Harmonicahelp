@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingRight="16dp"
+    android:baselineAligned="false">
 
 
     <EditText
@@ -87,11 +88,23 @@
 
     </GridLayout>
 
-    <Button
-        android:id="@+id/buttonOK"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OK" />
+
+        <Button
+            android:id="@+id/keybord_space"
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:text="space" />
+    </LinearLayout>
 
 
 </LinearLayout>

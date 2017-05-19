@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Harmonicahelp.iml" filepath="$PROJECT_DIR$/Harmonicahelp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Harmonicahelp2.iml" filepath="$PROJECT_DIR$/Harmonicahelp2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
