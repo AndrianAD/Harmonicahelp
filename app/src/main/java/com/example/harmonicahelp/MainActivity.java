@@ -9,10 +9,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -532,7 +530,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int min = (int) Collections.min(tempArray);
-                int max = (int) Collections.max(tempArray);
                 if (min >= 12) {
                     octava_set = 12;
                     changetabs();
@@ -652,10 +649,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
             i++;
-        }
+            }
         while (i != str.length);
         list = Arrays.asList(str);
-    }
+        }
 
     // код смены табов
     public static void changetabs() {
