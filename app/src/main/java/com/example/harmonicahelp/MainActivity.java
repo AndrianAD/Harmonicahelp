@@ -256,12 +256,16 @@ public class MainActivity extends AppCompatActivity {
         actionCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (noteList.isEmpty() || noteList2.isEmpty()) {
-                    return;
+                try {
+                    if (noteList.isEmpty() || noteList2.isEmpty()) {
+                        return;
+                    }
+                    String get_tab = (enterTab.getText().toString());
+                    input_tabs(get_tab);
+                    changetabs();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                String get_tab = (enterTab.getText().toString());
-                input_tabs(get_tab);
-                changetabs();
 
 
             }
@@ -529,26 +533,32 @@ public class MainActivity extends AppCompatActivity {
         octava_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int min = (int) Collections.min(tempArray);
-                if (min >= 12) {
-                    octava_set = 12;
-                    changetabs();
-                    octava_set = 0;
-                } else
-                    return;
+                try {
+                    int min = (int) Collections.min(tempArray);
+                    if (min >= 12) {
+                        octava_set = 12;
+                        changetabs();
+                    } else
+                        return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         octava_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int max = (int) Collections.max(tempArray);
-                if (max <= 37 - 12) {
-                    octava_set = -12;
-                    changetabs();
-                    octava_set = 0;
-                } else
-                    return;
+                try {
+                    int max = (int) Collections.max(tempArray);
+                    if (max <= 37 - 12) {
+                        octava_set = -12;
+                        changetabs();
+                    } else
+                        return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -579,7 +589,7 @@ public class MainActivity extends AppCompatActivity {
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
-        for (int i = 1; i < 37 - temp; i = i + int_masiv) {
+        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
             Hole nots = (Hole) noteList2.get(i);
             Hole tabs = (Hole) noteList2.get(i + temp);
@@ -596,7 +606,7 @@ public class MainActivity extends AppCompatActivity {
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {2, 1, 2, 2, 1, 2, 2};
-        for (int i = 1; i < 37 - temp; i = i + int_masiv) {
+        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
             Hole nots = (Hole) noteList2.get(i);
             Hole tabs = (Hole) noteList2.get(i + temp);
@@ -613,7 +623,7 @@ public class MainActivity extends AppCompatActivity {
         int j = 0;
         int int_masiv = 0;
         final int[] masiv = {3, 2, 1, 1, 3, 2};
-        for (int i = 1; i < 37 - temp; i = i + int_masiv) {
+        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
             int_masiv = masiv[j];
             Hole nots = (Hole) noteList2.get(i);
             Hole tabs = (Hole) noteList2.get(i + temp);
@@ -656,33 +666,34 @@ public class MainActivity extends AppCompatActivity {
 
     // код смены табов
     public static void changetabs() {
-        int k;
-        tempArray.clear();
-        rezultat = "";
-        for (int i = 0; i < list.size(); i++) {
-            k = 0;
-            for (int j = 0; j < 38; j++) {
-                Hole hole = (Hole) noteList2.get(j);
-                k++;
-                String list_i = list.get(i);
-                String list_J = hole.getTabs();
-                // Ищет совпадения в первом List
-                if (list_J.equals(list_i)) {
-                    int peremennaia = k + temp - 1;
-                    if (peremennaia < 0) {
-                        peremennaia = peremennaia + n + 7;
+        try {
+            tempArray.clear();
+            rezultat = "";
+            for (int i = 0; i < list.size(); i++) {
+                for (int j = 0; j < 38; j++) {
+                    Hole hole = (Hole) noteList2.get(j);
+                    String list_i = list.get(i);
+                    String list_J = hole.getTabs();
+                    // Ищет совпадения в первом List
+                    if (list_J.equals(list_i)) {
+                        int peremennaia = j + temp;
+                        if (peremennaia < 0) {
+                            peremennaia = peremennaia + n + 7;
+                        }
+                        if (peremennaia > 37) {
+                            peremennaia = peremennaia - n - 7;
+                        }
+                        tempArray.add(peremennaia);
+                        final_tabs = (Hole) noteList.get(peremennaia - octava_set);
+                        rezultat += " " + final_tabs.getTabs();
+                        break;
                     }
-                    if (peremennaia > 37) {
-                        peremennaia = peremennaia - n - 7;
-                    }
-                    tempArray.add(peremennaia);
-                    final_tabs = (Hole) noteList.get(peremennaia - octava_set);
-                    rezultat += " " + final_tabs.getTabs();
-                    break;
                 }
             }
+            result.setText(rezultat);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        result.setText(rezultat);
     }
 
 }
