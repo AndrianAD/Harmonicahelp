@@ -261,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                     String get_tab = (enterTab.getText().toString());
+                    octava_set = 0;
                     input_tabs(get_tab);
                     changetabs();
                 } catch (Exception e) {
@@ -528,15 +529,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button octava_plus = (Button) findViewById(R.id.octava_plus);
-        Button octava_minus = (Button) findViewById(R.id.octava_minus);
+        final Button octava_minus = (Button) findViewById(R.id.octava_minus);
 
         octava_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     int min = (int) Collections.min(tempArray);
+                    if (octava_set >= 25) {
+                        return;
+                    }
                     if (min >= 12) {
-                        octava_set = 12;
+                        octava_set = octava_set + 12;
                         changetabs();
                     } else
                         return;
@@ -551,8 +555,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     int max = (int) Collections.max(tempArray);
-                    if (max <= 37 - 12) {
-                        octava_set = -12;
+                    if (max <= 25) {
+                        octava_set = octava_set + (-12);
                         changetabs();
                     } else
                         return;
@@ -683,7 +687,7 @@ public class MainActivity extends AppCompatActivity {
                         if (peremennaia > 37) {
                             peremennaia = peremennaia - n - 7;
                         }
-                        tempArray.add(peremennaia);
+                        tempArray.add(peremennaia - octava_set);
                         final_tabs = (Hole) noteList.get(peremennaia - octava_set);
                         rezultat += " " + final_tabs.getTabs();
                         break;
