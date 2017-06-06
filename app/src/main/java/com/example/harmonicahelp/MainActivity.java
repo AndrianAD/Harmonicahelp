@@ -1,7 +1,9 @@
 package com.example.harmonicahelp;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +16,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private Button btnHarm;
     private Button btnTon;
     private Button actionCount;
@@ -29,19 +31,20 @@ public class MainActivity extends AppCompatActivity {
     Note[] note = Note.values;
     public static int n = 5;
     public static int z = 0;
+    static int octava_set = 0;
     static String rezultat = " ";
     static String gammaview = " ";
     public static List<String> list = new ArrayList<String>();
     public static Hole final_tabs;
     static int temp;
-    static int octava_set = 0;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         btnHarm = (Button) findViewById(R.id.button_my_harm_key);
         btnTon = (Button) findViewById(R.id.button_ton_id);
         enterTab = (EditText) findViewById(R.id.edit_text_enter_tabl);
@@ -53,6 +56,20 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView n_view = (TextView) findViewById(R.id.view_n);
         final TextView z_view = (TextView) findViewById(R.id.view_z);
+
+        Button reset = (Button) findViewById(R.id.reset_id);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                finish();
+                overridePendingTransition(0, 0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+
+
 
 // Чекбокс мажор
         CheckBox switchCheckBox_major = (CheckBox) findViewById(R.id.switch_check_box_major);
