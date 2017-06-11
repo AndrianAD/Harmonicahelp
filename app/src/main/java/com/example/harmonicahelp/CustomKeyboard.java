@@ -1,24 +1,5 @@
-/**
- * Copyright 2013 Maarten Pennings
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * <p>
- * If you use this software in a product, an acknowledgment in the product
- * documentation would be appreciated but is not required.
- */
 
 package com.example.harmonicahelp;
-
 import android.app.Activity;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
@@ -34,12 +15,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-/**
- * When an activity hosts a keyboardView, this class allows several EditText's to register for it.
- *
- * @author Maarten Pennings
- * @date 2012 December 23
- */
 public class CustomKeyboard {
 
     /** A link to the KeyboardView that is used to render this CustomKeyboard. */
@@ -52,13 +27,10 @@ public class CustomKeyboard {
 
         public final static int CodeDelete = -5; // Keyboard.KEYCODE_DELETE
         public final static int CodeCancel = -3; // Keyboard.KEYCODE_CANCEL
-        public final static int CodePrev = 55000;
         public final static int CodeAllLeft = 55001;
         public final static int CodeLeft = 55002;
         public final static int CodeRight = 55003;
         public final static int CodeAllRight = 55004;
-        public final static int CodeNext = 55005;
-        public final static int CodeClear = 55006;
 
         @Override
         public void onKey(int primaryCode, int[] keyCodes) {
@@ -74,8 +46,6 @@ public class CustomKeyboard {
                 hideCustomKeyboard();
             } else if (primaryCode == CodeDelete) {
                 if (editable != null && start > 0) editable.delete(start - 1, start);
-            } else if (primaryCode == CodeClear) {
-                if (editable != null) editable.clear();
             } else if (primaryCode == CodeLeft) {
                 if (start > 0) edittext.setSelection(start - 1);
             } else if (primaryCode == CodeRight) {
@@ -84,12 +54,6 @@ public class CustomKeyboard {
                 edittext.setSelection(0);
             } else if (primaryCode == CodeAllRight) {
                 edittext.setSelection(edittext.length());
-            } else if (primaryCode == CodePrev) {
-                View focusNew = edittext.focusSearch(View.FOCUS_BACKWARD);
-                if (focusNew != null) focusNew.requestFocus();
-            } else if (primaryCode == CodeNext) {
-                View focusNew = edittext.focusSearch(View.FOCUS_FORWARD);
-                if (focusNew != null) focusNew.requestFocus();
             } else { // insert character
                 editable.insert(start, Character.toString((char) primaryCode));
             }
@@ -172,12 +136,14 @@ public class CustomKeyboard {
     public void registerEditText(int resid) {
         // Find the EditText 'resid'
         EditText edittext = (EditText) mHostActivity.findViewById(resid);
+        edittext.setCursorVisible(true);
         // Make the custom keyboard appear
         edittext.setOnFocusChangeListener(new OnFocusChangeListener() {
             // NOTE By setting the on focus listener, we can show the custom keyboard when the edit box gets focus, but also hide it when the edit box loses focus
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) showCustomKeyboard(v);
+                if (hasFocus)
+                    showCustomKeyboard(v);
                 else hideCustomKeyboard();
             }
         });
@@ -188,25 +154,7 @@ public class CustomKeyboard {
                 showCustomKeyboard(v);
             }
         });
-        // Disable standard keyboard hard way
-        // NOTE There is also an easy way: 'edittext.setInputType(InputType.TYPE_NULL)' (but you will not have a cursor, and no 'edittext.setCursorVisible(true)' doesn't work )
-        edittext.setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                EditText edittext = (EditText) v;
-                int inType = edittext.getInputType();       // Backup the input type
-                edittext.setInputType(InputType.TYPE_NULL); // Disable standard keyboard
-                edittext.onTouchEvent(event);               // Call native handler
-                edittext.setInputType(inType);              // Restore input type
-                return true; // Consume touch event
-            }
-        });
-        // Disable spell check (hex strings look like words to Android)
-        edittext.setInputType(edittext.getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+
     }
-
 }
-
-
-// NOTE How can we change the background color of some keys (like the shift/ctrl/alt)?
-// NOTE What does android:keyEdgeFlags do/mean
