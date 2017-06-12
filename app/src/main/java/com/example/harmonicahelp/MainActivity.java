@@ -707,10 +707,10 @@ public class MainActivity extends Activity {
                     if (list_J.equals(list_i)) {
                         int peremennaia = j + temp;
                         if (peremennaia < 0) {
-                            peremennaia = peremennaia + n + 7;
+                            peremennaia = peremennaia + 12;
                         }
                         if (peremennaia > 37) {
-                            peremennaia = peremennaia - n - 7;
+                            peremennaia = peremennaia - 12;
                         }
                         tempArray.add(peremennaia - octava_set);
                         final_tabs = (Hole) noteList.get(peremennaia - octava_set);

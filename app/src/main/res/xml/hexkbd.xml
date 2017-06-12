@@ -16,8 +16,8 @@
             android:keyEdgeFlags="left"
             android:keyIcon="@drawable/sym_keyboard_delete" />
         <Key
-            android:codes="48"
-            android:keyLabel="0" />
+            android:codes="55005"
+            android:keyLabel="10" />
         <Key
             android:codes="49"
             android:keyLabel="1" />

@@ -27,6 +27,7 @@ public class CustomKeyboard {
         public final static int CodeLeft = 55002;
         public final static int CodeRight = 55003;
         public final static int CodeAllRight = 55004;
+        public final static int Ten = 55005;
 
         @Override
         public void onKey(int primaryCode, int[] keyCodes) {
@@ -50,6 +51,8 @@ public class CustomKeyboard {
                 edittext.setSelection(0);
             } else if (primaryCode == CodeAllRight) {
                 edittext.setSelection(edittext.length());
+            } else if (primaryCode == Ten) {
+                editable.insert(start, "10");
             } else { // insert character
                 editable.insert(start, Character.toString((char) primaryCode));
             }
