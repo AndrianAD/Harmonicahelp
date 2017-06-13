@@ -124,157 +124,7 @@ public class MainActivity extends Activity {
 
 
 
-//        enterTab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (noteList2.isEmpty()) {
-//                    return;
-//                }
-//                if (noteList.isEmpty()) {
-//                    noteList = (ArrayList) noteList2.clone();
-//                }
-//                final Dialog dialog = new Dialog(MainActivity.this);
-//                dialog.setContentView(R.layout.keybord);
-//                dialog.show();
-//                final EditText edittext_keybord = (EditText) dialog.findViewById(R.id.editText2);
-//                final Button button_keybord1 = (Button) dialog.findViewById(R.id.keybord1);
-//                final Button button_keybord2 = (Button) dialog.findViewById(R.id.keybord2);
-//                final Button button_keybord3 = (Button) dialog.findViewById(R.id.keybord3);
-//                final Button button_keybord4 = (Button) dialog.findViewById(R.id.keybord4);
-//                final Button button_keybord5 = (Button) dialog.findViewById(R.id.keybord5);
-//                final Button button_keybord6 = (Button) dialog.findViewById(R.id.keybord6);
-//                final Button button_keybord7 = (Button) dialog.findViewById(R.id.keybord7);
-//                final Button button_keybord8 = (Button) dialog.findViewById(R.id.keybord8);
-//                final Button button_keybord9 = (Button) dialog.findViewById(R.id.keybord9);
-//                final Button button_keybord10 = (Button) dialog.findViewById(R.id.keybord10);
-//                final Button button_keybordOK = (Button) dialog.findViewById(R.id.buttonOK);
-//                final Button button_keybordsemiton = (Button) dialog.findViewById(R.id.keybord_semiton);
-//                final Button button_keybordton = (Button) dialog.findViewById(R.id.keybord_ton);
-//                final Button button_keybordminus = (Button) dialog.findViewById(R.id.keybord_minus);
-//                final Button button_keybordstar = (Button) dialog.findViewById(R.id.keybord_star);
-//                final Button button_keybordback = (Button) dialog.findViewById(R.id.keybord_backspace);
-//                final Button button_keybordspace = (Button) dialog.findViewById(R.id.keybord_space);
-//
-//                edittext_keybord.setText(enterTab.getText().toString());
-//                rezultat = enterTab.getText().toString();
-//                enterTab.setText("");
-//
-//                View.OnClickListener onClickListener = new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        String s;
-//                        switch (v.getId()) {
-//                            case R.id.keybord1:
-//                                s = "1";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord2:
-//                                s = "2";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord3:
-//                                s = "3";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord4:
-//                                s = "4";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord5:
-//                                s = "5";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord6:
-//                                s = "6";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord7:
-//                                s = "7";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord8:
-//                                s = "8";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord9:
-//                                s = "9";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord10:
-//                                s = "10";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord_minus:
-//                                s = "-";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord_star:
-//                                s = "*";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord_semiton:
-//                                s = "'";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord_ton:
-//                                s = "''";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.keybord_space:
-//                                s = " ";
-//                                rezultat += s;
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//
-//                            case R.id.keybord_backspace:
-//                                if (rezultat.length() == 0) {
-//                                    break;
-//                                }
-//                                rezultat = rezultat.substring(0, rezultat.length() - 1);
-//                                edittext_keybord.setText(rezultat);
-//                                break;
-//                            case R.id.buttonOK:
-//                                dialog.dismiss();
-//                                enterTab.setText(rezultat);
-//                                input_tabs(rezultat);
-//                                changetabs();
-//                                break;
-//                        }
-//                    }
-//                };
-//                button_keybord1.setOnClickListener(onClickListener);
-//                button_keybord2.setOnClickListener(onClickListener);
-//                button_keybord3.setOnClickListener(onClickListener);
-//                button_keybord4.setOnClickListener(onClickListener);
-//                button_keybord5.setOnClickListener(onClickListener);
-//                button_keybord6.setOnClickListener(onClickListener);
-//                button_keybord7.setOnClickListener(onClickListener);
-//                button_keybord8.setOnClickListener(onClickListener);
-//                button_keybord9.setOnClickListener(onClickListener);
-//                button_keybord10.setOnClickListener(onClickListener);
-//                button_keybordOK.setOnClickListener(onClickListener);
-//                button_keybordminus.setOnClickListener(onClickListener);
-//                button_keybordstar.setOnClickListener(onClickListener);
-//                button_keybordsemiton.setOnClickListener(onClickListener);
-//                button_keybordback.setOnClickListener(onClickListener);
-//                button_keybordton.setOnClickListener(onClickListener);
-//                button_keybordspace.setOnClickListener(onClickListener);
-//            }
-//        });
+
 
 
 // Кнопка "Посчитать"
@@ -648,6 +498,7 @@ public class MainActivity extends Activity {
         minor.setText(gammaview);
         gammaview = "";
     }
+
     public void getGamma_blues(boolean isChecked) {
         int j = 0;
         int int_masiv = 0;
@@ -665,6 +516,26 @@ public class MainActivity extends Activity {
         blues.setText(gammaview);
         gammaview = "";
     }
+
+    public void get_minor_pentatonic(boolean isChecked) {
+        int j = 0;
+        int int_masiv = 0;
+        final int[] masiv = {3,2,2,3,2};
+        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
+            int_masiv = masiv[j];
+            Hole nots = (Hole) noteList2.get(i);
+            Hole tabs = (Hole) noteList2.get(i + temp);
+            j++;
+            if (j == 5) {
+                j = 0;
+            }
+            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
+        }
+        blues.setText(gammaview);
+        gammaview = "";
+    }
+
+
 
     private int check_temp(int n, int z) {
         int temp = z - n;
@@ -726,3 +597,9 @@ public class MainActivity extends Activity {
     }
 
 }
+
+//int k=0;
+//for(int i=0; i< .lenght -2 ; i++)
+//    k++;
+//for(int j=k; j<k+3; j++)
+//    temp+= mas[j];
