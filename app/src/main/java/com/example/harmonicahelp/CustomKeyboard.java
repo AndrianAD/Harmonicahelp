@@ -23,10 +23,6 @@ public class CustomKeyboard {
 
         public final static int CodeDelete = -5; // Keyboard.KEYCODE_DELETE
         public final static int CodeCancel = -3; // Keyboard.KEYCODE_CANCEL
-        public final static int CodeAllLeft = 55001;
-        public final static int CodeLeft = 55002;
-        public final static int CodeRight = 55003;
-        public final static int CodeAllRight = 55004;
         public final static int Ten = 55005;
 
         @Override
@@ -43,14 +39,6 @@ public class CustomKeyboard {
                 hideCustomKeyboard();
             } else if (primaryCode == CodeDelete) {
                 if (editable != null && start > 0) editable.delete(start - 1, start);
-            } else if (primaryCode == CodeLeft) {
-                if (start > 0) edittext.setSelection(start - 1);
-            } else if (primaryCode == CodeRight) {
-                if (start < edittext.length()) edittext.setSelection(start + 1);
-            } else if (primaryCode == CodeAllLeft) {
-                edittext.setSelection(0);
-            } else if (primaryCode == CodeAllRight) {
-                edittext.setSelection(edittext.length());
             } else if (primaryCode == Ten) {
                 editable.insert(start, "10");
             } else { // insert character
