@@ -20,11 +20,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+
 public class MainActivity extends Activity {
-    private Button btnHarm;
-    private Button btnTon;
-    private Button actionCount;
-    private Button btncopy;
+
+    private Button btnHarm, btnTon, actionCount, btncopy, newactivity;
     public static TextView result;
     public static TextView major;
     public static TextView minor;
@@ -93,6 +92,18 @@ public class MainActivity extends Activity {
                 toast.show();
             }
         });
+
+        newactivity = (Button) findViewById(R.id.button);
+        newactivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Exercice.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
 
 
@@ -297,127 +308,11 @@ public class MainActivity extends Activity {
         btnTon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(MainActivity.this);
-                dialog.setContentView(R.layout.button_key);
-                dialog.show();
-                final Button button0 = (Button) dialog.findViewById(R.id.button0);
-                final Button button1 = (Button) dialog.findViewById(R.id.button1);
-                final Button button2 = (Button) dialog.findViewById(R.id.button2);
-                final Button button3 = (Button) dialog.findViewById(R.id.button3);
-                final Button button4 = (Button) dialog.findViewById(R.id.button4);
-                final Button button5 = (Button) dialog.findViewById(R.id.button5);
-                final Button button6 = (Button) dialog.findViewById(R.id.button6);
-                final Button button7 = (Button) dialog.findViewById(R.id.button7);
-                final Button button8 = (Button) dialog.findViewById(R.id.button8);
-                final Button button9 = (Button) dialog.findViewById(R.id.button9);
-                final Button button10 = (Button) dialog.findViewById(R.id.button10);
-                final Button button11 = (Button) dialog.findViewById(R.id.button11);
-                View.OnClickListener onClickListener = new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        switch (v.getId()) {
-                            case R.id.button0:
-                                z = 0;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button0.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button1:
-                                z = 1;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button1.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button2:
-                                z = 2;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button2.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button3:
-                                z = 3;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button3.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button4:
-                                z = 4;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button4.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button5:
-                                z = 5;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button5.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button6:
-                                z = 6;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button6.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button7:
-                                z = 7;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button7.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button8:
-                                z = 8;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button8.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button9:
-                                z = 9;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button9.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button10:
-                                z = 10;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button10.getText());
-                                dialog.dismiss();
-                                break;
-                            case R.id.button11:
-                                z = 11;
-                                noteList2.clear();
-                                tonalinosti2();
-                                z_view.setText(button11.getText());
-                                dialog.dismiss();
-                                break;
-                        }
-                    }
-                };
-                button0.setOnClickListener(onClickListener);
-                button1.setOnClickListener(onClickListener);
-                button2.setOnClickListener(onClickListener);
-                button3.setOnClickListener(onClickListener);
-                button4.setOnClickListener(onClickListener);
-                button5.setOnClickListener(onClickListener);
-                button6.setOnClickListener(onClickListener);
-                button7.setOnClickListener(onClickListener);
-                button8.setOnClickListener(onClickListener);
-                button9.setOnClickListener(onClickListener);
-                button10.setOnClickListener(onClickListener);
-                button11.setOnClickListener(onClickListener);
-
+                makelist2(z_view);
             }
         });
+
+
         Button octava_plus = (Button) findViewById(R.id.octava_plus);
         final Button octava_minus = (Button) findViewById(R.id.octava_minus);
 
@@ -457,6 +352,127 @@ public class MainActivity extends Activity {
         });
 
 
+    }
+
+    private void makelist2(final TextView z_view) {
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.button_key);
+        dialog.show();
+        final Button button0 = (Button) dialog.findViewById(R.id.button0);
+        final Button button1 = (Button) dialog.findViewById(R.id.button1);
+        final Button button2 = (Button) dialog.findViewById(R.id.button2);
+        final Button button3 = (Button) dialog.findViewById(R.id.button3);
+        final Button button4 = (Button) dialog.findViewById(R.id.button4);
+        final Button button5 = (Button) dialog.findViewById(R.id.button5);
+        final Button button6 = (Button) dialog.findViewById(R.id.button6);
+        final Button button7 = (Button) dialog.findViewById(R.id.button7);
+        final Button button8 = (Button) dialog.findViewById(R.id.button8);
+        final Button button9 = (Button) dialog.findViewById(R.id.button9);
+        final Button button10 = (Button) dialog.findViewById(R.id.button10);
+        final Button button11 = (Button) dialog.findViewById(R.id.button11);
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.button0:
+                        z = 0;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button0.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button1:
+                        z = 1;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button1.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button2:
+                        z = 2;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button2.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button3:
+                        z = 3;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button3.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button4:
+                        z = 4;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button4.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button5:
+                        z = 5;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button5.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button6:
+                        z = 6;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button6.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button7:
+                        z = 7;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button7.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button8:
+                        z = 8;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button8.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button9:
+                        z = 9;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button9.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button10:
+                        z = 10;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button10.getText());
+                        dialog.dismiss();
+                        break;
+                    case R.id.button11:
+                        z = 11;
+                        noteList2.clear();
+                        tonalinosti2();
+                        z_view.setText(button11.getText());
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        };
+        button0.setOnClickListener(onClickListener);
+        button1.setOnClickListener(onClickListener);
+        button2.setOnClickListener(onClickListener);
+        button3.setOnClickListener(onClickListener);
+        button4.setOnClickListener(onClickListener);
+        button5.setOnClickListener(onClickListener);
+        button6.setOnClickListener(onClickListener);
+        button7.setOnClickListener(onClickListener);
+        button8.setOnClickListener(onClickListener);
+        button9.setOnClickListener(onClickListener);
+        button10.setOnClickListener(onClickListener);
+        button11.setOnClickListener(onClickListener);
     }
     //---------------------
 

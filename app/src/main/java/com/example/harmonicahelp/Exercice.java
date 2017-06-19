@@ -3,7 +3,7 @@ package com.example.harmonicahelp;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class exercice extends Activity {
+public class Exercice extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
