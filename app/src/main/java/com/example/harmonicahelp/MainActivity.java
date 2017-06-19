@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     public static TextView major;
     public static TextView minor;
     public static TextView blues;
-    private EditText enterTab;
+    private static EditText enterTab;
     private static ArrayList noteList2 = new ArrayList();
     private static ArrayList noteList = new ArrayList();
     private static ArrayList tempArray = new ArrayList();
@@ -157,19 +157,7 @@ public class MainActivity extends Activity {
         actionCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if (noteList.isEmpty() || noteList2.isEmpty()) {
-                        return;
-                    }
-                    String get_tab = (enterTab.getText().toString());
-                    octava_set = 0;
-                    input_tabs(get_tab);
-                    changetabs();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
+                сalculate();
             }
         });
 
@@ -354,7 +342,21 @@ public class MainActivity extends Activity {
 
     }
 
-    private void makelist2(final TextView z_view) {
+    public static void сalculate() {
+        try {
+            if (noteList.isEmpty() || noteList2.isEmpty()) {
+                return;
+            }
+            String get_tab = (enterTab.getText().toString());
+            octava_set = 0;
+            input_tabs(get_tab);
+            changetabs();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void makelist2(final TextView z_view) {
         final Dialog dialog = new Dialog(MainActivity.this);
         dialog.setContentView(R.layout.button_key);
         dialog.show();

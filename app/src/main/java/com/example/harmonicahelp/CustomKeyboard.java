@@ -29,6 +29,7 @@ public class CustomKeyboard {
         public void onKey(int primaryCode, int[] keyCodes) {
             // NOTE We can say '<Key android:codes="49,50" ... >' in the xml file; all codes come in keyCodes, the first in this list in primaryCode
             // Get the EditText and its Editable
+            MainActivity main = new MainActivity();
             View focusCurrent = mHostActivity.getWindow().getCurrentFocus();
             if (focusCurrent == null || focusCurrent.getClass() != EditText.class) return;
             EditText edittext = (EditText) focusCurrent;
@@ -43,6 +44,7 @@ public class CustomKeyboard {
                 editable.insert(start, "10");
             } else { // insert character
                 editable.insert(start, Character.toString((char) primaryCode));
+                MainActivity.сalculate();
             }
         }
 
