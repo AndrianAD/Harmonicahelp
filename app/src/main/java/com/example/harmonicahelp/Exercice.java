@@ -1,15 +1,15 @@
-package com.example.harmonicahelp;
-
-import android.app.Activity;
-import android.os.Bundle;
-
-public class Exercice extends Activity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercice);
-
-
-    }
-}
+//package com.example.harmonicahelp;
+//
+//import android.app.Activity;
+//import android.os.Bundle;
+//
+//public class Exercice extends Activity {
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_exercice);
+//
+//
+//    }
+//}
