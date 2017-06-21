@@ -387,6 +387,7 @@ public class MainActivity extends Activity {
         getGamma_major(false);
         getGamma_minor(false);
         getGamma_blues(false);
+        get_minor_pentatonic(false);
     }
 
 
