@@ -24,7 +24,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private Button btnHarm, btnTon, actionCount, btncopy;
-    public static TextView result, major, minor, blues;
+    public static TextView result, major, minor, blues,penta_minor;
     private static EditText enterTab;
     private static ArrayList noteList2 = new ArrayList();
     private static ArrayList noteList = new ArrayList();
@@ -55,6 +55,7 @@ public class MainActivity extends Activity {
         major = (TextView) findViewById(R.id.gamma_major);
         minor = (TextView) findViewById(R.id.gamma_minor);
         blues = (TextView) findViewById(R.id.gamma_blues);
+        penta_minor=(TextView) findViewById(R.id.penta_minor);
 
         final TextView n_view = (TextView) findViewById(R.id.view_n);
         final TextView z_view = (TextView) findViewById(R.id.view_z);
@@ -148,6 +149,26 @@ public class MainActivity extends Activity {
                 getGamma_blues(isChecked);
             }
         });
+
+        // Чекбокс минорная пентатоника
+        CheckBox switchCheckBox_penta_minor = (CheckBox) findViewById(R.id.checkBox_penta_minor);
+        switchCheckBox_penta_minor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (noteList2.isEmpty()) {
+                    return;
+                }
+                if (noteList.isEmpty()) {
+                    noteList = (ArrayList) noteList2.clone();
+                }
+                get_minor_pentatonic(isChecked);
+            }
+        });
+
+
+
+
+
 
 // Кнопка "Посчитать"
         actionCount.setOnClickListener(new View.OnClickListener() {
@@ -420,6 +441,42 @@ public class MainActivity extends Activity {
         blues.setText(gammaview);
         gammaview = "";
     }
+    public void get_minor_pentatonic(boolean isChecked) {
+        int j = 0;
+        int int_masiv = 0;
+        final int[] masiv = {3,2,2,3,2};
+        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
+            int_masiv = masiv[j];
+            Hole nots = (Hole) noteList2.get(i);
+            Hole tabs = (Hole) noteList2.get(i + temp);
+            j++;
+            if (j == 5) {
+                j = 0;
+            }
+            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
+        }
+        penta_minor.setText(gammaview);
+        gammaview = "";
+    }
+
+    public void get_major_pentatonic(boolean isChecked) {
+        int j = 0;
+        int int_masiv = 0;
+        final int[] masiv = {2,2,3,2,3};
+        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
+            int_masiv = masiv[j];
+            Hole nots = (Hole) noteList2.get(i);
+            Hole tabs = (Hole) noteList2.get(i + temp);
+            j++;
+            if (j == 5) {
+                j = 0;
+            }
+            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
+        }
+        blues.setText(gammaview);
+        gammaview = "";
+    }
+
 
     private int check_temp(int n, int z) {
         int temp = z - n;
@@ -614,6 +671,5 @@ public class MainActivity extends Activity {
         button10.setOnClickListener(onClickListener);
         button11.setOnClickListener(onClickListener);
     }
-
 
 }
