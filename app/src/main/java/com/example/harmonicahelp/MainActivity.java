@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private Button btnHarm, btnTon, actionCount, btncopy;
+    private Button btnHarm, btnTon, actionCount, btncopy, btncopy2;
     public static TextView result, major, minor, blues,penta_minor;
     private static EditText enterTab;
     private static ArrayList noteList2 = new ArrayList();
@@ -62,6 +62,8 @@ public class MainActivity extends Activity {
 
         mCustomKeyboard = new CustomKeyboard(this, R.id.keyboardview, R.xml.hexkbd);
         mCustomKeyboard.registerEditText(R.id.edit_text_enter_tabl);
+
+
         Button reset = (Button) findViewById(R.id.reset_id);
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +90,23 @@ public class MainActivity extends Activity {
                 toast.show();
             }
         });
+
+
+        btncopy2 = (Button) findViewById(R.id.button_copy2);
+        clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        btncopy2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = result.getText().toString();
+                clipData = ClipData.newPlainText("text", text);
+                clipboardManager.setPrimaryClip(clipData);
+                Toast toast = Toast.makeText(getApplicationContext(), "Text Copied", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+        });
+
+
 
 //// new intent
 //        newactivity = (Button) findViewById(R.id.button);
