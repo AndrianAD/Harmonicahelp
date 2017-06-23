@@ -41,7 +41,8 @@ public class MainActivity extends Activity {
     CustomKeyboard mCustomKeyboard;
     ClipboardManager clipboardManager;
     ClipData clipData;
-    int stroi=1;
+    int stroi1=1;
+    int stroi2=2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,7 +208,7 @@ public class MainActivity extends Activity {
         btnHarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chek_stroi();
+                chek_stroi(1);
                 final Dialog dialog = new Dialog(MainActivity.this);
                 dialog.setContentView(R.layout.button_key);
                 dialog.show();
@@ -339,6 +340,7 @@ public class MainActivity extends Activity {
         btnTon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chek_stroi(2);
                 makelist2(z_view);
             }
         });
@@ -385,7 +387,7 @@ public class MainActivity extends Activity {
 
     }
 
-   private void chek_stroi() {
+   private void chek_stroi(int stroi) {
         if(stroi==1) {
             note= new Note[]{
                     new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
@@ -405,7 +407,7 @@ public class MainActivity extends Activity {
             note= new Note[]{
                     new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
                     new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
-                    new Note("Eb", "-3*"), new Note("E", "+3"), new Note("F", "-3'"), new Note("F#", "-3"),
+                    new Note("Eb", "-3*"), new Note("E", "3"), new Note("F", "-3'"), new Note("F#", "-3"),
                     new Note("G", "4"), new Note("Ab", "-4'"), new Note("A", "-4"), new Note("Bb", "4*"),
                     new Note("B", "5"), new Note("C", "-5"), new Note("C#", "5*"), new Note("D", "6"),
                     new Note("Eb", "-6'"), new Note("E", "-6"), new Note("F", "6*"), new Note("F#", "-7"),
