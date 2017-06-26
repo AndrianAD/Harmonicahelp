@@ -41,8 +41,8 @@ public class MainActivity extends Activity {
     CustomKeyboard mCustomKeyboard;
     ClipboardManager clipboardManager;
     ClipData clipData;
-    int stroi1=1;
-    int stroi2=2;
+    private static int stroi1=1;
+    private static int stroi2=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,10 +192,6 @@ public class MainActivity extends Activity {
         });
 
 
-
-
-
-
 // Кнопка "Посчитать"
         actionCount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,12 +199,20 @@ public class MainActivity extends Activity {
                 сalculate();
             }
         });
+        // Make noteList2
+        btnTon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               chek_stroi(1);
+                makelist2(z_view);
+            }
+        });
 
 // Make noteList
         btnHarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chek_stroi(1);
+                chek_stroi(3);
                 final Dialog dialog = new Dialog(MainActivity.this);
                 dialog.setContentView(R.layout.button_key);
                 dialog.show();
@@ -336,14 +340,7 @@ public class MainActivity extends Activity {
 
             }
         });
-// Make noteList2
-        btnTon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chek_stroi(2);
-                makelist2(z_view);
-            }
-        });
+
 
 
         Button octava_plus = (Button) findViewById(R.id.octava_plus);
@@ -407,7 +404,7 @@ public class MainActivity extends Activity {
             note= new Note[]{
                     new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
                     new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
-                    new Note("Eb", "-3*"), new Note("E", "3"), new Note("F", "-3'"), new Note("F#", "-3"),
+                    new Note("Eb", "3*"), new Note("E", "3"), new Note("F", "-3'"), new Note("F#", "-3"),
                     new Note("G", "4"), new Note("Ab", "-4'"), new Note("A", "-4"), new Note("Bb", "4*"),
                     new Note("B", "5"), new Note("C", "-5"), new Note("C#", "5*"), new Note("D", "6"),
                     new Note("Eb", "-6'"), new Note("E", "-6"), new Note("F", "6*"), new Note("F#", "-7"),
@@ -536,7 +533,6 @@ public class MainActivity extends Activity {
         penta_minor.setText(gammaview);
         gammaview = "";
     }
-
     public void get_major_pentatonic(boolean isChecked) {
         int j = 0;
         int int_masiv = 0;
@@ -577,6 +573,10 @@ public class MainActivity extends Activity {
                 str[i] = "-2";
 
             }
+
+
+
+
             i++;
             }
         while (i != str.length);
