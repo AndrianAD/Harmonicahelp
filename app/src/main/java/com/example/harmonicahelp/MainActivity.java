@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,13 +17,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static com.example.harmonicahelp.Gamma.getGamma_blues;
-import static com.example.harmonicahelp.Gamma.getGamma_major;
-import static com.example.harmonicahelp.Gamma.getGamma_minor;
-import static com.example.harmonicahelp.Gamma.get_minor_pentatonic;
-
-
 public class MainActivity extends Activity {
 
     private Button btnHarm, btnTon, actionCount, btncopy, btncopy2,newactivity;
@@ -126,14 +117,6 @@ public class MainActivity extends Activity {
         });
 
 
-
-
-
-
-
-
-
-
 // Кнопка "Посчитать"
         actionCount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +124,9 @@ public class MainActivity extends Activity {
                 сalculate();
             }
         });
+
+
+
         // Make noteList2
         btnTon.setOnClickListener(new View.OnClickListener() {
             @Override

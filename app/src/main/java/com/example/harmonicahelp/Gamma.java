@@ -1,6 +1,8 @@
 package com.example.harmonicahelp;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import static com.example.harmonicahelp.MainActivity.temp;
 public class Gamma extends Activity {
     public static TextView major, minor, blues, penta_minor;
     static String gammaview = " ";
+    private Button button_ton;
 
 
     @Override
@@ -24,6 +27,13 @@ public class Gamma extends Activity {
         minor = (TextView) findViewById(R.id.gamma_minor);
         blues = (TextView) findViewById(R.id.gamma_blues);
         penta_minor = (TextView) findViewById(R.id.penta_minor);
+
+        button_ton = (Button) findViewById(R.id.button_ton);
+        button_ton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
 
         // Чекбокс мажор
