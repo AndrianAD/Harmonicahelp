@@ -20,29 +20,33 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static com.example.harmonicahelp.Gamma.getGamma_blues;
+import static com.example.harmonicahelp.Gamma.getGamma_major;
+import static com.example.harmonicahelp.Gamma.getGamma_minor;
+import static com.example.harmonicahelp.Gamma.get_minor_pentatonic;
+
 
 public class MainActivity extends Activity {
 
     private Button btnHarm, btnTon, actionCount, btncopy, btncopy2;
-    public static TextView result, major, minor, blues,penta_minor;
     private static EditText enterTab;
-    private static ArrayList noteList2 = new ArrayList();
-    private static ArrayList noteList = new ArrayList();
+    public static ArrayList noteList2 = new ArrayList();
+    public static ArrayList noteList = new ArrayList();
     private static ArrayList tempArray = new ArrayList();
     Note[] note;
     public static int n = 5;
     public static int z = 0;
     static int octava_set = 0;
     static String rezultat = " ";
-    static String gammaview = " ";
     public static List<String> list = new ArrayList<String>();
     public static Hole final_tabs;
-    static int temp;
+    public static int temp;
     CustomKeyboard mCustomKeyboard;
     ClipboardManager clipboardManager;
     ClipData clipData;
     private static int stroi1=1;
     private static int stroi2=1;
+    public static TextView result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +58,6 @@ public class MainActivity extends Activity {
         enterTab = (EditText) findViewById(R.id.edit_text_enter_tabl);
         actionCount = (Button) findViewById(R.id.button_action_count);
         result = (TextView) findViewById(R.id.text_view_result);
-        major = (TextView) findViewById(R.id.gamma_major);
-        minor = (TextView) findViewById(R.id.gamma_minor);
-        blues = (TextView) findViewById(R.id.gamma_blues);
-        penta_minor=(TextView) findViewById(R.id.penta_minor);
 
         final TextView n_view = (TextView) findViewById(R.id.view_n);
         final TextView z_view = (TextView) findViewById(R.id.view_z);
@@ -131,65 +131,7 @@ public class MainActivity extends Activity {
 
 
 
-// Чекбокс мажор
-        CheckBox switchCheckBox_major = (CheckBox) findViewById(R.id.switch_check_box_major);
-        switchCheckBox_major.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (noteList2.isEmpty()) {
-                    return;
-                }
-                if (noteList.isEmpty()) {
-                    noteList = (ArrayList) noteList2.clone();
-                }
-                getGamma_major(isChecked);
-            }
-        });
 
-// Чекбокс мінор
-        CheckBox switchCheckBox_minor = (CheckBox) findViewById(R.id.switch_check_box_minor);
-        switchCheckBox_minor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (noteList2.isEmpty()) {
-                    return;
-                }
-                if (noteList.isEmpty()) {
-                    noteList = (ArrayList) noteList2.clone();
-                }
-                getGamma_minor(isChecked);
-            }
-        });
-
-// Чекбокс блюз
-        CheckBox switchCheckBox_blues = (CheckBox) findViewById(R.id.switch_check_box_blues);
-        switchCheckBox_blues.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (noteList2.isEmpty()) {
-                    return;
-                }
-                if (noteList.isEmpty()) {
-                    noteList = (ArrayList) noteList2.clone();
-                }
-                getGamma_blues(isChecked);
-            }
-        });
-
-        // Чекбокс минорная пентатоника
-        CheckBox switchCheckBox_penta_minor = (CheckBox) findViewById(R.id.checkBox_penta_minor);
-        switchCheckBox_penta_minor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (noteList2.isEmpty()) {
-                    return;
-                }
-                if (noteList.isEmpty()) {
-                    noteList = (ArrayList) noteList2.clone();
-                }
-                get_minor_pentatonic(isChecked);
-            }
-        });
 
 
 // Кнопка "Посчитать"
@@ -458,98 +400,10 @@ public class MainActivity extends Activity {
             noteList2.add(hole);
         }
         temp = check_temp(n, z);
-        getGamma_major(false);
-        getGamma_minor(false);
-        getGamma_blues(false);
-        get_minor_pentatonic(false);
     }
 
 
-    public void getGamma_major(boolean isChecked) {
-        int j = 0;
-        int int_masiv = 0;
-        final int[] masiv = {2, 2, 1, 2, 2, 2, 1};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
-            int_masiv = masiv[j];
-            Hole nots = (Hole) noteList2.get(i);
-            Hole tabs = (Hole) noteList2.get(i + temp);
-            j++;
-            if (j == 7) {
-                j = 0;
-            }
-            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
-        }
-        major.setText(gammaview);
-        gammaview = "";
-    }
-    public void getGamma_minor(boolean isChecked) {
-        int j = 0;
-        int int_masiv = 0;
-        final int[] masiv = {2, 1, 2, 2, 1, 2, 2};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
-            int_masiv = masiv[j];
-            Hole nots = (Hole) noteList2.get(i);
-            Hole tabs = (Hole) noteList2.get(i + temp);
-            j++;
-            if (j == 7) {
-                j = 0;
-            }
-            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
-        }
-        minor.setText(gammaview);
-        gammaview = "";
-    }
-    public void getGamma_blues(boolean isChecked) {
-        int j = 0;
-        int int_masiv = 0;
-        final int[] masiv = {3, 2, 1, 1, 3, 2};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
-            int_masiv = masiv[j];
-            Hole nots = (Hole) noteList2.get(i);
-            Hole tabs = (Hole) noteList2.get(i + temp);
-            j++;
-            if (j == 6) {
-                j = 0;
-            }
-            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
-        }
-        blues.setText(gammaview);
-        gammaview = "";
-    }
-    public void get_minor_pentatonic(boolean isChecked) {
-        int j = 0;
-        int int_masiv = 0;
-        final int[] masiv = {3,2,2,3,2};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
-            int_masiv = masiv[j];
-            Hole nots = (Hole) noteList2.get(i);
-            Hole tabs = (Hole) noteList2.get(i + temp);
-            j++;
-            if (j == 5) {
-                j = 0;
-            }
-            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
-        }
-        penta_minor.setText(gammaview);
-        gammaview = "";
-    }
-    public void get_major_pentatonic(boolean isChecked) {
-        int j = 0;
-        int int_masiv = 0;
-        final int[] masiv = {2,2,3,2,3};
-        for (int i = 0; i < 37 - temp; i = i + int_masiv) {
-            int_masiv = masiv[j];
-            Hole nots = (Hole) noteList2.get(i);
-            Hole tabs = (Hole) noteList2.get(i + temp);
-            j++;
-            if (j == 5) {
-                j = 0;
-            }
-            gammaview += isChecked ? nots.getNote() + " " : tabs.getTabs() + " ";
-        }
-        blues.setText(gammaview);
-        gammaview = "";
-    }
+
 
 
     private int check_temp(int n, int z) {
