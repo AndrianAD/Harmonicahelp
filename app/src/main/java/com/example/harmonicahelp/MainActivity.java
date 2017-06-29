@@ -28,7 +28,7 @@ import static com.example.harmonicahelp.Gamma.get_minor_pentatonic;
 
 public class MainActivity extends Activity {
 
-    private Button btnHarm, btnTon, actionCount, btncopy, btncopy2;
+    private Button btnHarm, btnTon, actionCount, btncopy, btncopy2,newactivity;
     private static EditText enterTab;
     public static ArrayList noteList2 = new ArrayList();
     public static ArrayList noteList = new ArrayList();
@@ -116,14 +116,14 @@ public class MainActivity extends Activity {
 
 
 //// new intent
-//        newactivity = (Button) findViewById(R.id.button);
-//        newactivity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, Exercice.class);
-//                startActivity(intent);
-//            }
-//        });
+        newactivity = (Button) findViewById(R.id.button);
+        newactivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Gamma.class);
+                startActivity(intent);
+            }
+        });
 
 
 
