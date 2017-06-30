@@ -17,27 +17,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+
 public class MainActivity extends Activity {
 
     private Button btnHarm, btnTon, actionCount, btncopy, btncopy2,newactivity;
+    public static TextView result, major, minor, blues,penta_minor;
     private static EditText enterTab;
     public static ArrayList noteList2 = new ArrayList();
     public static ArrayList noteList = new ArrayList();
     private static ArrayList tempArray = new ArrayList();
-    Note[] note;
+    Note[] note = Note.values;
     public static int n = 5;
     public static int z = 0;
     static int octava_set = 0;
     static String rezultat = " ";
+    static String gammaview = " ";
     public static List<String> list = new ArrayList<String>();
     public static Hole final_tabs;
-    public static int temp;
+    static int temp;
     CustomKeyboard mCustomKeyboard;
     ClipboardManager clipboardManager;
     ClipData clipData;
-    private static int stroi1=1;
-    private static int stroi2=1;
-    public static TextView result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,10 @@ public class MainActivity extends Activity {
         enterTab = (EditText) findViewById(R.id.edit_text_enter_tabl);
         actionCount = (Button) findViewById(R.id.button_action_count);
         result = (TextView) findViewById(R.id.text_view_result);
+        major = (TextView) findViewById(R.id.gamma_major);
+        minor = (TextView) findViewById(R.id.gamma_minor);
+        blues = (TextView) findViewById(R.id.gamma_blues);
+        penta_minor=(TextView) findViewById(R.id.penta_minor);
 
         final TextView n_view = (TextView) findViewById(R.id.view_n);
         final TextView z_view = (TextView) findViewById(R.id.view_z);
@@ -57,13 +62,6 @@ public class MainActivity extends Activity {
         mCustomKeyboard.registerEditText(R.id.edit_text_enter_tabl);
 
 
-
-
-
-
-
-
-//Кнопка Reset
         Button reset = (Button) findViewById(R.id.reset_id);
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +74,7 @@ public class MainActivity extends Activity {
             }
         });
 
-// Кнопки Сopy
+
         btncopy = (Button) findViewById(R.id.button_copy);
         clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         btncopy.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +88,8 @@ public class MainActivity extends Activity {
                 toast.show();
             }
         });
+
+
         btncopy2 = (Button) findViewById(R.id.button_copy2);
         clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         btncopy2.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
                 toast.show();
             }
         });
-//-------------------------------------------------------------------------------------------------------
+
 
 
 //// new intent
@@ -117,6 +117,17 @@ public class MainActivity extends Activity {
         });
 
 
+
+
+
+
+
+
+
+
+
+
+
 // Кнопка "Посчитать"
         actionCount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,22 +136,10 @@ public class MainActivity extends Activity {
             }
         });
 
-
-
-        // Make noteList2
-        btnTon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               chek_stroi(1);
-                makelist2(z_view);
-            }
-        });
-
 // Make noteList
         btnHarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chek_stroi(3);
                 final Dialog dialog = new Dialog(MainActivity.this);
                 dialog.setContentView(R.layout.button_key);
                 dialog.show();
@@ -268,7 +267,13 @@ public class MainActivity extends Activity {
 
             }
         });
-
+// Make noteList2
+        btnTon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makelist2(z_view);
+            }
+        });
 
 
         Button octava_plus = (Button) findViewById(R.id.octava_plus);
@@ -312,55 +317,6 @@ public class MainActivity extends Activity {
 
     }
 
-   private void chek_stroi(int stroi) {
-        if(stroi==1) {
-            note= new Note[]{
-                    new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
-                    new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
-                    new Note("Eb", "-3'''"), new Note("E", "-3''"), new Note("F", "-3'"), new Note("F#", "-3"),
-                    new Note("G", "4"), new Note("Ab", "-4'"), new Note("A", "-4"), new Note("Bb", "4*"),
-                    new Note("B", "5"), new Note("C", "-5"), new Note("C#", "5*"), new Note("D", "6"),
-                    new Note("Eb", "-6'"), new Note("E", "-6"), new Note("F", "6*"), new Note("F#", "-7"),
-                    new Note("G", "7"), new Note("Ab", "-7*"), new Note("A", "-8"), new Note("Bb", "8'"),
-                    new Note("B", "8"), new Note("C", "-9"), new Note("C#", "9'"), new Note("D", "9"),
-                    new Note("Eb", "-9*"), new Note("E", "-10"), new Note("F", "10''"), new Note("F#", "10'"),
-                    new Note("G", "10"), new Note("Ab", "10*"), new Note("A", ""), new Note("Bb", ""),
-                    new Note("B", ""), new Note("C", ""), new Note("C#", ""), new Note("D", ""), new Note("Eb", ""),
-                    new Note("E", ""), new Note("F", ""), new Note("F#", ""), new Note("G", "")};
-        }
-        if(stroi==2) {
-            note= new Note[]{
-                    new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
-                    new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
-                    new Note("Eb", "3*"), new Note("E", "3"), new Note("F", "-3'"), new Note("F#", "-3"),
-                    new Note("G", "4"), new Note("Ab", "-4'"), new Note("A", "-4"), new Note("Bb", "4*"),
-                    new Note("B", "5"), new Note("C", "-5"), new Note("C#", "5*"), new Note("D", "6"),
-                    new Note("Eb", "-6'"), new Note("E", "-6"), new Note("F", "6*"), new Note("F#", "-7"),
-                    new Note("G", "7"), new Note("Ab", "-7*"), new Note("A", "-8"), new Note("Bb", "8'"),
-                    new Note("B", "8"), new Note("C", "-9"), new Note("C#", "9'"), new Note("D", "9"),
-                    new Note("Eb", "-9*"), new Note("E", "-10"), new Note("F", "10''"), new Note("F#", "10'"),
-                    new Note("G", "10"), new Note("Ab", "10*"), new Note("A", ""), new Note("Bb", ""),
-                    new Note("B", ""), new Note("C", ""), new Note("C#", ""), new Note("D", ""), new Note("Eb", ""),
-                    new Note("E", ""), new Note("F", ""), new Note("F#", ""), new Note("G", "")};
-        }
-
-        if(stroi==3) {
-            note= new Note[]{
-                    new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
-                    new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
-                    new Note("Eb", "-3'''"), new Note("E", "-3''"), new Note("F", "-3'"), new Note("F#", "-3"),
-                    new Note("G", "4"), new Note("Ab", "-4'"), new Note("A", "-4"), new Note("Bb", "4*"),
-                    new Note("B", "5"), new Note("C", "-5'"), new Note("C#", "-5"), new Note("D", "6"),
-                    new Note("Eb", "-6'"), new Note("E", "-6"), new Note("F", "6*"), new Note("F#", "-7"),
-                    new Note("G", "7"), new Note("Ab", "-7*"), new Note("A", "-8"), new Note("Bb", "8'"),
-                    new Note("B", "8"), new Note("C", "-9"), new Note("C#", "9'"), new Note("D", "9"),
-                    new Note("Eb", "-9*"), new Note("E", "-10"), new Note("F", "10''"), new Note("F#", "10'"),
-                    new Note("G", "10"), new Note("Ab", "10*"), new Note("A", ""), new Note("Bb", ""),
-                    new Note("B", ""), new Note("C", ""), new Note("C#", ""), new Note("D", ""), new Note("Eb", ""),
-                    new Note("E", ""), new Note("F", ""), new Note("F#", ""), new Note("G", "")};
-        }
-    }
-
 
     //---------------------
 
@@ -386,6 +342,7 @@ public class MainActivity extends Activity {
             noteList2.add(hole);
         }
         temp = check_temp(n, z);
+
     }
 
 
@@ -413,10 +370,6 @@ public class MainActivity extends Activity {
                 str[i] = "-2";
 
             }
-
-
-
-
             i++;
             }
         while (i != str.length);

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Harmonica help</string>
+    <string-array name="harmonica_stroi">
+        <item>Рихтеровская </item>
+        <item>Падди</item>
+        <item>Кантри</item>
+    </string-array>
 </resources>
