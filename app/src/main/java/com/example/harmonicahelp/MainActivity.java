@@ -30,12 +30,11 @@ public class MainActivity extends Activity {
     public static ArrayList noteList2 = new ArrayList();
     public static ArrayList noteList = new ArrayList();
     private static ArrayList tempArray = new ArrayList();
-    Note[] note = Note.values;
+    Note[] note;
     public static int n = 5;
     public static int z = 0;
     static int octava_set = 0;
     static String rezultat = " ";
-    static String gammaview = " ";
     public static List<String> list = new ArrayList<String>();
     public static Hole final_tabs;
     static int temp;
@@ -319,8 +318,6 @@ public class MainActivity extends Activity {
                 makelist2(z_view);
             }
         });
-
-
         Button octava_plus = (Button) findViewById(R.id.octava_plus);
         final Button octava_minus = (Button) findViewById(R.id.octava_minus);
 
@@ -374,6 +371,7 @@ public class MainActivity extends Activity {
     }
 
     public void tonalinosti() {
+        chek_stroi(stroi1);
         for (int i = n; i < 37 + n + 1; i++) {
             Hole hole = new Hole(note[i], note[i - n]);
             noteList.add(hole);
@@ -382,6 +380,7 @@ public class MainActivity extends Activity {
     }
 
     public void tonalinosti2() {
+        chek_stroi(stroi2);
         for (int i = z; i < 37 + z + 1; i++) {
             Hole hole = new Hole(note[i], note[i - z]);
             noteList2.add(hole);
