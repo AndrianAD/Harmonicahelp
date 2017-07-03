@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
     private static ArrayList tempArray = new ArrayList();
     Note[] note;
     public static int n = 5;
-    public static int z = 0;
+    public static int z = 5;
     static int octava_set = 0;
     static String rezultat = " ";
     public static List<String> list = new ArrayList<String>();
@@ -84,17 +84,32 @@ public class MainActivity extends Activity {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Ваш выбор: " + choose[selectedItemPosition], Toast.LENGTH_SHORT);
                 toast.show();
+
                 if(choose[selectedItemPosition].equals("Рихтеровская")){
+                    noteList2.clear();
                     stroi2=1;
+                    tonalinosti2();
+                    сalculate();
+
+
+
 
                 }
                 if(choose[selectedItemPosition].equals("Падди")){
+                    noteList2.clear();
                     stroi2=2;
+                    tonalinosti2();
+                    сalculate();
+
 
 
                 }
                 if(choose[selectedItemPosition].equals("Кантри")){
+                    noteList2.clear();
                     stroi2=3;
+                    tonalinosti2();
+                    сalculate();
+
 
 
                 }
@@ -427,7 +442,7 @@ public class MainActivity extends Activity {
             rezultat = "";
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < 38; j++) {
-                    Hole hole = (Hole) noteList2.get(j);
+                    Hole hole = (Hole) noteList.get(j);
                     String list_i = list.get(i);
                     String list_J = hole.getTabs();
                     // Ищет совпадения в первом List
@@ -440,7 +455,7 @@ public class MainActivity extends Activity {
                             peremennaia = peremennaia - 12;
                         }
                         tempArray.add(peremennaia - octava_set);
-                        final_tabs = (Hole) noteList.get(peremennaia - octava_set);
+                        final_tabs = (Hole) noteList2.get(peremennaia - octava_set);
                         rezultat += " " + final_tabs.getTabs();
                         break;
                     }
