@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +25,8 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private Button btnHarm, btnTon, actionCount, btncopy, btncopy2,newactivity;
-    public static TextView result, major, minor, blues,penta_minor;
+    private Button btnHarm, btnTon, actionCount, btncopy, btncopy2, newactivity;
+    public static TextView result, major, minor, blues, penta_minor;
     private static EditText enterTab;
     public static ArrayList noteList2 = new ArrayList();
     public static ArrayList noteList = new ArrayList();
@@ -41,8 +42,8 @@ public class MainActivity extends Activity {
     CustomKeyboard mCustomKeyboard;
     ClipboardManager clipboardManager;
     ClipData clipData;
-    public  int stroi1=1;
-    public  int stroi2=1;
+    public static int stroi1 = 1;
+    public int stroi2 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class MainActivity extends Activity {
         major = (TextView) findViewById(R.id.gamma_major);
         minor = (TextView) findViewById(R.id.gamma_minor);
         blues = (TextView) findViewById(R.id.gamma_blues);
-        penta_minor=(TextView) findViewById(R.id.penta_minor);
+        penta_minor = (TextView) findViewById(R.id.penta_minor);
 
         final TextView n_view = (TextView) findViewById(R.id.view_n);
         final TextView z_view = (TextView) findViewById(R.id.view_z);
@@ -67,58 +68,79 @@ public class MainActivity extends Activity {
 
 
         // -------Spiner
-
         // Получаем экземпляр элемента Spinner
-        final Spinner spinner = (Spinner)findViewById(R.id.spinner2);
+        final Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
 // Настраиваем адаптер
         ArrayAdapter<?> adapter =
                 ArrayAdapter.createFromResource(this, R.array.harmonica_stroi, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Вызываем адаптер
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner2.setAdapter(adapter);
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent,
                                        View itemSelected, int selectedItemPosition, long selectedId) {
 
                 String[] choose = getResources().getStringArray(R.array.harmonica_stroi);
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Ваш выбор: " + choose[selectedItemPosition], Toast.LENGTH_SHORT);
-                toast.show();
 
-                if(choose[selectedItemPosition].equals("Рихтеровская")){
+                if (choose[selectedItemPosition].equals("Рихтеровская")) {
                     noteList2.clear();
-                    stroi2=1;
+                    stroi2 = 1;
                     tonalinosti2();
                     сalculate();
-
-
-
-
                 }
-                if(choose[selectedItemPosition].equals("Падди")){
+                if (choose[selectedItemPosition].equals("Падди")) {
                     noteList2.clear();
-                    stroi2=2;
+                    stroi2 = 2;
                     tonalinosti2();
                     сalculate();
-
-
-
                 }
-                if(choose[selectedItemPosition].equals("Кантри")){
+                if (choose[selectedItemPosition].equals("Кантри")) {
                     noteList2.clear();
-                    stroi2=3;
+                    stroi2 = 3;
                     tonalinosti2();
                     сalculate();
-
-
-
                 }
             }
+
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 //-----------------------------------------------
 
+        // -------Spiner
+        // Получаем экземпляр элемента Spinner
+        final Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+// Вызываем адаптер
+        spinner1.setAdapter(adapter);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
+
+                String[] choose = getResources().getStringArray(R.array.harmonica_stroi);
+                if (choose[selectedItemPosition].equals("Рихтеровская")) {
+                    stroi1 = 1;
+                    noteList.clear();
+                    tonalinosti();
+                    сalculate();
+                }
+                if (choose[selectedItemPosition].equals("Падди")) {
+                    stroi1 = 2;
+                    noteList.clear();
+                    tonalinosti();
+                    сalculate();
+                }
+                if (choose[selectedItemPosition].equals("Кантри")) {
+                    stroi1 = 3;
+                    noteList.clear();
+                    tonalinosti();
+                    сalculate();
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+//-----------------------------------------------
 
 
         Button reset = (Button) findViewById(R.id.reset_id);
@@ -164,7 +186,6 @@ public class MainActivity extends Activity {
         });
 
 
-
 //// new intent
         newactivity = (Button) findViewById(R.id.button);
         newactivity.setOnClickListener(new View.OnClickListener() {
@@ -174,17 +195,6 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Кнопка "Посчитать"
@@ -405,9 +415,6 @@ public class MainActivity extends Activity {
     }
 
 
-
-
-
     private int check_temp(int n, int z) {
         int temp = z - n;
         int[] nums = {-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11};
@@ -425,15 +432,14 @@ public class MainActivity extends Activity {
         String str[] = inputtabs.split(" ");
         int i = 0;
         do {
-            if (str[i].equals("3")) {
+            if (str[i].equals("3")&& stroi1!=2)  {
                 str[i] = "-2";
-
             }
             i++;
-            }
+        }
         while (i != str.length);
         list = Arrays.asList(str);
-        }
+    }
 
     // код смены табов
     public static void changetabs() {
@@ -603,10 +609,9 @@ public class MainActivity extends Activity {
     }
 
 
-
     private void chek_stroi(int stroi) {
-        if(stroi==1) {
-            note= new Note[]{
+        if (stroi == 1) {
+            note = new Note[]{
                     new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
                     new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
                     new Note("Eb", "-3'''"), new Note("E", "-3''"), new Note("F", "-3'"), new Note("F#", "-3"),
@@ -620,8 +625,8 @@ public class MainActivity extends Activity {
                     new Note("B", ""), new Note("C", ""), new Note("C#", ""), new Note("D", ""), new Note("Eb", ""),
                     new Note("E", ""), new Note("F", ""), new Note("F#", ""), new Note("G", "")};
         }
-        if(stroi==2) {
-            note= new Note[]{
+        if (stroi == 2) {
+            note = new Note[]{
                     new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
                     new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
                     new Note("Eb", "3*"), new Note("E", "3"), new Note("F", "-3'"), new Note("F#", "-3"),
@@ -636,8 +641,8 @@ public class MainActivity extends Activity {
                     new Note("E", ""), new Note("F", ""), new Note("F#", ""), new Note("G", "")};
         }
 
-        if(stroi==3) {
-            note= new Note[]{
+        if (stroi == 3) {
+            note = new Note[]{
                     new Note("G", "1"), new Note("Ab", "-1'"), new Note("A", "-1"), new Note("Bb", "1*"),
                     new Note("B", "2"), new Note("C", "-2''"), new Note("C#", "-2'"), new Note("D", "-2"),
                     new Note("Eb", "-3'''"), new Note("E", "-3''"), new Note("F", "-3'"), new Note("F#", "-3"),
