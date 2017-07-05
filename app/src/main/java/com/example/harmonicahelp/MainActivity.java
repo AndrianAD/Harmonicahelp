@@ -435,6 +435,10 @@ public class MainActivity extends Activity {
             if (str[i].equals("3")&& stroi1!=2)  {
                 str[i] = "-2";
             }
+
+            if (str[i].contains("\n")) {
+
+            }
             i++;
         }
         while (i != str.length);
@@ -447,9 +451,12 @@ public class MainActivity extends Activity {
             tempArray.clear();
             rezultat = "";
             for (int i = 0; i < list.size(); i++) {
+
+                String list_i = list.get(i);
+                if (list_i.contains("\n"))
+                    rezultat += "\n";
                 for (int j = 0; j < 38; j++) {
                     Hole hole = (Hole) noteList.get(j);
-                    String list_i = list.get(i);
                     String list_J = hole.getTabs();
                     // Ищет совпадения в первом List
                     if (list_J.equals(list_i)) {
@@ -511,6 +518,7 @@ public class MainActivity extends Activity {
                         z = 0;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button0.getText());
                         dialog.dismiss();
                         break;
@@ -518,6 +526,7 @@ public class MainActivity extends Activity {
                         z = 1;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button1.getText());
                         dialog.dismiss();
                         break;
@@ -525,6 +534,7 @@ public class MainActivity extends Activity {
                         z = 2;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button2.getText());
                         dialog.dismiss();
                         break;
@@ -532,6 +542,7 @@ public class MainActivity extends Activity {
                         z = 3;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button3.getText());
                         dialog.dismiss();
                         break;
@@ -539,6 +550,7 @@ public class MainActivity extends Activity {
                         z = 4;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button4.getText());
                         dialog.dismiss();
                         break;
@@ -546,6 +558,7 @@ public class MainActivity extends Activity {
                         z = 5;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button5.getText());
                         dialog.dismiss();
                         break;
@@ -553,6 +566,7 @@ public class MainActivity extends Activity {
                         z = 6;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button6.getText());
                         dialog.dismiss();
                         break;
@@ -560,6 +574,7 @@ public class MainActivity extends Activity {
                         z = 7;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button7.getText());
                         dialog.dismiss();
                         break;
@@ -567,6 +582,7 @@ public class MainActivity extends Activity {
                         z = 8;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button8.getText());
                         dialog.dismiss();
                         break;
@@ -574,6 +590,7 @@ public class MainActivity extends Activity {
                         z = 9;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button9.getText());
                         dialog.dismiss();
                         break;
@@ -581,6 +598,7 @@ public class MainActivity extends Activity {
                         z = 10;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button10.getText());
                         dialog.dismiss();
                         break;
@@ -588,6 +606,7 @@ public class MainActivity extends Activity {
                         z = 11;
                         noteList2.clear();
                         tonalinosti2();
+                        MainActivity.сalculate();
                         z_view.setText(button11.getText());
                         dialog.dismiss();
                         break;

@@ -1,4 +1,5 @@
 package com.example.harmonicahelp;
+
 import android.app.Activity;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
@@ -13,12 +14,18 @@ import android.widget.EditText;
 
 public class CustomKeyboard {
 
-    /** A link to the KeyboardView that is used to render this CustomKeyboard. */
+    /**
+     * A link to the KeyboardView that is used to render this CustomKeyboard.
+     */
     private KeyboardView mKeyboardView;
-    /** A link to the activity that hosts the {@link #mKeyboardView}. */
+    /**
+     * A link to the activity that hosts the {@link #mKeyboardView}.
+     */
     private Activity mHostActivity;
 
-    /** The key (code) handler. */
+    /**
+     * The key (code) handler.
+     */
     private OnKeyboardActionListener mOnKeyboardActionListener = new OnKeyboardActionListener() {
 
         public final static int CodeDelete = -5; // Keyboard.KEYCODE_DELETE
@@ -40,8 +47,13 @@ public class CustomKeyboard {
                 hideCustomKeyboard();
             } else if (primaryCode == CodeDelete) {
                 if (editable != null && start > 0) editable.delete(start - 1, start);
+                MainActivity.сalculate();
             } else if (primaryCode == Ten) {
                 editable.insert(start, "10");
+            } else if (primaryCode == 10) {
+                editable.insert(start, " ");
+                editable.insert(start + 1, "\n");
+                editable.insert(start + 2, " ");
             } else { // insert character
                 editable.insert(start, Character.toString((char) primaryCode));
                 MainActivity.сalculate();
@@ -84,8 +96,8 @@ public class CustomKeyboard {
      * Note that the keyboard layout xml file may include key codes for navigation; see the constants in this class for their values.
      * Note that to enable EditText's to use this custom keyboard, call the {@link #registerEditText(int)}.
      *
-     * @param host The hosting activity.
-     * @param viewid The id of the KeyboardView.
+     * @param host     The hosting activity.
+     * @param viewid   The id of the KeyboardView.
      * @param layoutid The id of the xml file containing the keyboard layout.
      */
     public CustomKeyboard(Activity host, int viewid, int layoutid) {
@@ -98,12 +110,16 @@ public class CustomKeyboard {
         mHostActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    /** Returns whether the CustomKeyboard is visible. */
+    /**
+     * Returns whether the CustomKeyboard is visible.
+     */
     public boolean isCustomKeyboardVisible() {
         return mKeyboardView.getVisibility() == View.VISIBLE;
     }
 
-    /** Make the CustomKeyboard visible, and hide the system keyboard for view v. */
+    /**
+     * Make the CustomKeyboard visible, and hide the system keyboard for view v.
+     */
     public void showCustomKeyboard(View v) {
         mKeyboardView.setVisibility(View.VISIBLE);
         mKeyboardView.setEnabled(true);
@@ -111,7 +127,9 @@ public class CustomKeyboard {
             ((InputMethodManager) mHostActivity.getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    /** Make the CustomKeyboard invisible. */
+    /**
+     * Make the CustomKeyboard invisible.
+     */
     public void hideCustomKeyboard() {
         mKeyboardView.setVisibility(View.GONE);
         mKeyboardView.setEnabled(false);

@@ -67,6 +67,10 @@
             android:codes="39"
             android:keyLabel="’" />
         <Key
+            android:codes="10"
+            android:keyLabel="ENTER" />
+
+        <Key
             android:codes="45"
             android:keyLabel="-" />
         <Key

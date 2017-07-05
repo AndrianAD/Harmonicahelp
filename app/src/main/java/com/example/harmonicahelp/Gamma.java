@@ -32,6 +32,7 @@ public class Gamma extends Activity {
         button_ton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
 
