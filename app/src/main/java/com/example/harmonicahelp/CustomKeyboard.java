@@ -50,10 +50,10 @@ public class CustomKeyboard {
                 MainActivity.сalculate();
             } else if (primaryCode == Ten) {
                 editable.insert(start, "10");
-            } else if (primaryCode == 10) {
-                editable.insert(start, " ");
-                editable.insert(start + 1, "\n");
-                editable.insert(start + 2, " ");
+//            } else if (primaryCode == 10) {
+//                editable.insert(start, " ");
+//                editable.insert(start + 1, "\n");
+//                editable.insert(start + 2, " ");
             } else { // insert character
                 editable.insert(start, Character.toString((char) primaryCode));
                 MainActivity.сalculate();

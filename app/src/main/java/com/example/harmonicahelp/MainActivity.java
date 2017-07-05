@@ -430,18 +430,17 @@ public class MainActivity extends Activity {
     // Ввод исходных табов от пользователя
     public static void input_tabs(String inputtabs) {
         String str[] = inputtabs.split(" ");
+
         int i = 0;
+
         do {
             if (str[i].equals("3")&& stroi1!=2)  {
                 str[i] = "-2";
             }
-
-            if (str[i].contains("\n")) {
-
-            }
             i++;
         }
         while (i != str.length);
+
         list = Arrays.asList(str);
     }
 
@@ -451,7 +450,6 @@ public class MainActivity extends Activity {
             tempArray.clear();
             rezultat = "";
             for (int i = 0; i < list.size(); i++) {
-
                 String list_i = list.get(i);
                 if (list_i.contains("\n"))
                     rezultat += "\n";
@@ -487,6 +485,7 @@ public class MainActivity extends Activity {
             }
             String get_tab = (enterTab.getText().toString());
             octava_set = 0;
+            get_tab = get_tab.replace("\n", " \n ");
             input_tabs(get_tab);
             changetabs();
         } catch (Exception e) {
